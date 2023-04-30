@@ -23,9 +23,9 @@ def register_all_middlewares(dp, config):
     dp.setup_middleware(ThrottlingMiddleware(BaseMiddleware))
 
 
+
 def register_all_filters(dp):
     dp.filters_factory.bind(AdminFilter)
-
 
 
 def register_all_handlers(dp):
