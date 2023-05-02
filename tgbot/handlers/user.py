@@ -30,7 +30,7 @@ async def services(message: Message):
 
 @rate_limit(5)
 async def online_recording(message: Message):
-    await message.answer('https://b157912.yclients.com/company/163813/menu?o=')
+    await message.answer('<a href="https://b157912.yclients.com/company/163813/menu?o="> 👉Записаться👈</a>')
     # await message.delete()
 
 
@@ -98,8 +98,13 @@ async def feedback_btn(call: CallbackQuery, callback_data: dict):
                               f"3️⃣<b>Получите скидку</b>\n"
                               f"Мы сразу применим скидку к ближайшему визиту",
                               reply_markup=stock_feedback_keyboard,
-
                               )
+
+
+@rate_limit(5)
+async def chanel_btn(call: CallbackQuery):
+    await call.answer("Список акций:")
+    await call.message.edit_reply_markup(reply_markup=stocks_markup)
 
 
 def register_user(dp: Dispatcher):
@@ -114,3 +119,4 @@ def register_user(dp: Dispatcher):
     dp.register_callback_query_handler(online_btn, stocks_callback.filter(stock_name='online'))
     dp.register_callback_query_handler(tatu_btn, stocks_callback.filter(stock_name='tatu'))
     dp.register_callback_query_handler(feedback_btn, stocks_callback.filter(stock_name='feedback'))
+    dp.register_callback_query_handler(chanel_btn, text='chanel')

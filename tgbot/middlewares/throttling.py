@@ -35,7 +35,8 @@ class ThrottlingMiddleware(BaseMiddleware):
         msg = target.message if isinstance(target, types.CallbackQuery) else target
         delta = throttled.rate - throttled.delta
         if throttled.exceeded_count == 2:
-            await msg.reply('Просьба не флудить!!!')
+            await msg.reply('Не отправляйте запросы часто это может привести \
+            к кратковременной блокировке!!!')
             return
         elif throttled.exceeded_count == 3:
             await msg.reply(f'Чат заблокирован на {round(delta, 0)} секунд!')

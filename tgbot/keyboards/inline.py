@@ -19,7 +19,7 @@ stocks_markup = InlineKeyboardMarkup(
                                                   stock_date='до 01.07.2023'),
             )
         ],
-[
+        [
             InlineKeyboardButton(
                 text='💬Скидка 10% за отзыв на Яндекс.Картах!',
                 callback_data=stocks_callback.new(stock_name='feedback',
@@ -28,7 +28,6 @@ stocks_markup = InlineKeyboardMarkup(
         ],
     ]
 )
-
 
 '''Клавиатура акции "онлайн записи"'''
 stock_online_keyboard = InlineKeyboardMarkup(
@@ -49,11 +48,16 @@ stock_online_keyboard = InlineKeyboardMarkup(
                 text='📲Скачать приложение',
                 url='https://xella.shop/'
             )
-        ]
+        ],
+        [
+            InlineKeyboardButton(
+                text='↩️К списку акций',
+                callback_data='chanel'
+            )
+        ],
 
     ]
 )
-
 
 '''Клавиатура акции "скидка 10% на тату"'''
 stock_tatu_keyboard = InlineKeyboardMarkup(
@@ -69,15 +73,15 @@ stock_tatu_keyboard = InlineKeyboardMarkup(
                 url='https://b157912.yclients.com/company/163813/menu?o='
             )
         ],
-        # [
-        #     InlineKeyboardButton(
-        #         text='К списку акций'
-        #     )
-        # ]
+        [
+            InlineKeyboardButton(
+                text='↩️К списку акций',
+                callback_data='chanel'
+            )
+        ],
 
     ]
 )
-
 
 '''Клавиатура акции "скидка за отзыв"'''
 stock_feedback_keyboard = InlineKeyboardMarkup(
@@ -93,11 +97,12 @@ stock_feedback_keyboard = InlineKeyboardMarkup(
                 url='https://yandex.ru/maps/org/klinika_esteticheskoy_meditsiny_xella/1134925283/?ll=37.627247%2C55.767271&utm_source=share&z=17'
             )
         ],
-        # [
-        #     InlineKeyboardButton(
-        #         text='К списку акций'
-        #     )
-        # ]
+        [
+            InlineKeyboardButton(
+                text='↩️К списку акций',
+                callback_data='chanel'
+            )
+        ],
 
     ]
 )
