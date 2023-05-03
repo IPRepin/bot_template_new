@@ -7,7 +7,7 @@ from aiogram.dispatcher.handler import current_handler
 from aiogram import types, Dispatcher
 from aiogram.utils.exceptions import Throttled
 
-'''Анти тролинг класс Middleware'''
+'''Анти флуд класс Middleware'''
 
 
 class ThrottlingMiddleware(BaseMiddleware):

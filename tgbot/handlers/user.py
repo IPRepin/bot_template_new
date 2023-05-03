@@ -8,11 +8,21 @@ from tgbot.keyboards.inline import stocks_markup, stock_online_keyboard, stock_t
 from tgbot.misc.throttling import rate_limit
 from tgbot.keyboards.reply import menu_ru
 from aiogram.dispatcher.filters import Command, Text
+from datetime import datetime
+
+
+newdate = datetime.now()
+now_date = newdate.strftime("%d.%m.%Y")
 
 
 @rate_limit(5)
 async def user_start(message: Message):
-    await message.reply(f"Привет {message.from_user.first_name}, я тестовый бот клиники XELLA!", reply_markup=menu_ru)
+    await message.reply(f"Привет {message.from_user.first_name}, я тестовый бот клиники XELLA!\n\n"
+                        f"🟢Я расскажу тебе про акции которые проходят в нашей клинике.\n\n"
+                        f"🟢Помогу выбрать услугу и записаться на неё не выходя из телеграм.\n\n"
+                        f"🟢Расскажу где скачать и как пользоваться нашим мобильным приложением,\
+                        в котором вы сможете не только записаться на любую услугу клиники,\
+                         но и приобрести профессиональную косметику мировых брендов!", reply_markup=menu_ru)
 
 
 @rate_limit(5)
@@ -28,15 +38,15 @@ async def services(message: Message):
     # await message.delete()
 
 
-@rate_limit(5)
-async def online_recording(message: Message):
-    await message.answer('<a href="https://b157912.yclients.com/company/163813/menu?o="> 👉Записаться👈</a>')
+# @rate_limit(5)
+# async def online_recording(message: Message):
+#     await message.answer('<a href="https://b157912.yclients.com/company/163813/menu?o="> 👉Записаться👈</a>')
     # await message.delete()
 
 
 @rate_limit(5)
 async def stocks(message: Message):
-    await message.answer('Список акций', reply_markup=stocks_markup)
+    await message.answer(f'Список акций на {now_date}', reply_markup=stocks_markup)
     # await message.delete()
 
 
@@ -111,7 +121,7 @@ def register_user(dp: Dispatcher):
     dp.register_message_handler(user_start, commands=["start", "help"], state="*")
     dp.register_message_handler(open_command, Text(endswith='работы'))
     dp.register_message_handler(services, Text(endswith='Услуги'))
-    dp.register_message_handler(online_recording, Text(endswith='запись'))
+    # dp.register_message_handler(online_recording, Text(endswith='запись'))
     dp.register_message_handler(stocks, Text(endswith='Акции'))
     dp.register_message_handler(shop, Text(endswith='shop'))
     dp.register_message_handler(contacts, Text(endswith='Контакты'))
