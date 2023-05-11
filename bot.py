@@ -14,14 +14,16 @@ from tgbot.handlers.echo import register_echo
 from tgbot.handlers.user import register_user
 from tgbot.middlewares.environment import EnvironmentMiddleware
 from tgbot.middlewares.throttling import ThrottlingMiddleware
+from tgbot.models.postgre import DataBase
 
 logger = logging.getLogger(__name__)
+
+
 
 
 def register_all_middlewares(dp, config):
     dp.setup_middleware(EnvironmentMiddleware(config=config))
     dp.setup_middleware(ThrottlingMiddleware(BaseMiddleware))
-
 
 
 def register_all_filters(dp):
@@ -46,8 +48,9 @@ async def main():
     storage = RedisStorage2() if config.tg_bot.use_redis else MemoryStorage()
     bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
     dp = Dispatcher(bot, storage=storage)
-
+    db = DataBase()
     bot['config'] = config
+    bot['db'] = db
 
     register_all_middlewares(dp, config)
     register_all_filters(dp)
@@ -55,6 +58,10 @@ async def main():
 
     # start
     try:
+        logger.info("Подключение к базе данных")
+        await db.create()
+        logger.info("Создаем таблицу акций")
+        await db.create_table_stocks()
         await dp.start_polling()
     finally:
         await dp.storage.close()
