@@ -3,7 +3,7 @@ from aiogram.dispatcher.middlewares import LifetimeControllerMiddleware, BaseMid
 
 class EnvironmentMiddleware(LifetimeControllerMiddleware):
     skip_patterns = ["error", "update"]
-    
+
     def __init__(self, **kwargs):
         super().__init__()
         self.kwargs = kwargs

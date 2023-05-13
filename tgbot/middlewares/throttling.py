@@ -7,12 +7,11 @@ from aiogram.dispatcher.handler import current_handler
 from aiogram import types, Dispatcher
 from aiogram.utils.exceptions import Throttled
 
-'''Анти флуд класс Middleware'''
+"""Анти флуд класс Middleware"""
 
 
 class ThrottlingMiddleware(BaseMiddleware):
-
-    def __init__(self, limit=DEFAULT_RATE_LIMIT, key_prefix='antiflood_'):
+    def __init__(self, limit=DEFAULT_RATE_LIMIT, key_prefix="antiflood_"):
         self.limit = limit
         self.prefix = key_prefix
         super(ThrottlingMiddleware, self).__init__()
@@ -30,16 +29,22 @@ class ThrottlingMiddleware(BaseMiddleware):
             await self.target_throttled(target, t, dp, key)
 
     @staticmethod
-    async def target_throttled(target: Union[types.Message, types.CallbackQuery],
-                               throttled: Throttled, dispatcher: Dispatcher, key: str):
+    async def target_throttled(
+        target: Union[types.Message, types.CallbackQuery],
+        throttled: Throttled,
+        dispatcher: Dispatcher,
+        key: str,
+    ):
         msg = target.message if isinstance(target, types.CallbackQuery) else target
         delta = throttled.rate - throttled.delta
         if throttled.exceeded_count == 2:
-            await msg.reply('Не отправляйте запросы часто это может привести \
-            к кратковременной блокировке!!!')
+            await msg.reply(
+                "Не отправляйте запросы часто это может привести \
+            к кратковременной блокировке!!!"
+            )
             return
         elif throttled.exceeded_count == 3:
-            await msg.reply(f'Чат заблокирован на {round(delta, 0)} секунд!')
+            await msg.reply(f"Чат заблокирован на {round(delta, 0)} секунд!")
             return
         await sleep(delta)
 

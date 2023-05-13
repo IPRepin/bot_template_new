@@ -19,8 +19,6 @@ from tgbot.models.postgre import DataBase
 logger = logging.getLogger(__name__)
 
 
-
-
 def register_all_middlewares(dp, config):
     dp.setup_middleware(EnvironmentMiddleware(config=config))
     dp.setup_middleware(ThrottlingMiddleware(BaseMiddleware))
@@ -40,17 +38,17 @@ def register_all_handlers(dp):
 async def main():
     logging.basicConfig(
         level=logging.INFO,
-        format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
+        format="%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s",
     )
     logger.info("Starting bot")
     config = load_config(".env")
 
     storage = RedisStorage2() if config.tg_bot.use_redis else MemoryStorage()
-    bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
+    bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
     dp = Dispatcher(bot, storage=storage)
     db = DataBase()
-    bot['config'] = config
-    bot['db'] = db
+    bot["config"] = config
+    bot["db"] = db
 
     register_all_middlewares(dp, config)
     register_all_filters(dp)
@@ -69,7 +67,7 @@ async def main():
         await bot.session.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         asyncio.run(main())
     except (KeyboardInterrupt, SystemExit):

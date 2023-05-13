@@ -18,11 +18,15 @@ class DataBase:
             database=config.db.database,
         )
 
-    async def execute(self, command, *args, fetch: bool = False,
-                      fetchval: bool = False,
-                      fetchrow: bool = False,
-                      execute: bool = False,
-                      ):
+    async def execute(
+        self,
+        command,
+        *args,
+        fetch: bool = False,
+        fetchval: bool = False,
+        fetchrow: bool = False,
+        execute: bool = False,
+    ):
         async with self.pool.acquire() as connection:
             connection: Connection
             async with connection.transaction():
@@ -49,15 +53,21 @@ class DataBase:
         """
         await self.execute(create_tab, execute=True)
 
+    async def add_stock(self, id, stock_name, stock_description, stock_img):
+        sql = "INSERT INTO Stocks_tab('id', 'stock_name', 'stock_description', 'stock_img') VALUES($1, $2, $3)"
+        return await self.execute(
+            sql, stock_name, stock_description, stock_img, fetchrow=True
+        )
+
     async def select_all_stocks(self):
         select_stocks = "SELECT * FROM Stocks_tab"
         return await self.execute(select_stocks, fetch=True)
 
     @staticmethod
     def format_args(sql, parameters: dict):
-        sql += " AND ".join([
-            f"{item} = ${num}" for num, item in enumerate(parameters.keys(), start=1)
-        ])
+        sql += " AND ".join(
+            [f"{item} = ${num}" for num, item in enumerate(parameters.keys(), start=1)]
+        )
         return sql, tuple(parameters.values())
 
     async def select_stock(self, **kwargs):
