@@ -1,6 +1,12 @@
+import os
 from dataclasses import dataclass
 
 from environs import Env
+
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 
 @dataclass
@@ -48,3 +54,11 @@ def load_config(path: str = None):
         ),
         misc=Miscellaneous(),
     )
+
+
+PGUSER = str(os.getenv('DB_USER'))
+PGPASSWORD = str(os.getenv('DB_PASS'))
+DATABASE = str(os.getenv('DB_NAME'))
+DBHOST = str(os.getenv('DB_HOST'))
+
+POSTGRES_URI = f"://{PGUSER}:{PGPASSWORD}@{DBHOST}/{DATABASE}"

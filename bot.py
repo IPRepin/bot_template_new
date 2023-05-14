@@ -14,6 +14,7 @@ from tgbot.handlers.echo import register_echo
 from tgbot.handlers.user import register_user
 from tgbot.middlewares.environment import EnvironmentMiddleware
 from tgbot.middlewares.throttling import ThrottlingMiddleware
+from tgbot.models import gino_db
 from tgbot.models.postgre import DataBase
 
 logger = logging.getLogger(__name__)
@@ -56,10 +57,10 @@ async def main():
 
     # start
     try:
-        logger.info("Подключение к базе данных")
-        await db.create()
-        logger.info("Создаем таблицу акций")
-        await db.create_table_stocks()
+        # logger.info("Подключение к базе данных")
+        # await db.create()
+        # logger.info("Создаем таблицу акций")
+        # await db.create_table_stocks()
         await dp.start_polling()
     finally:
         await dp.storage.close()
