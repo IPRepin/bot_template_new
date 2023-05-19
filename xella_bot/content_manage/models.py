@@ -22,10 +22,10 @@ class Stocks(TimeBasedModel):
     description = models.TextField(verbose_name='Описание акции')
     image = models.TextField(verbose_name='ID или ссылка на изображение')
 
-    def __str__(self):
-        return f"{self.name}\n" \
-               f"{self.description}\n" \
-               f"{self.image}"
+    # def __str__(self):
+    #     return f"{self.name}\n" \
+    #            f"{self.description}\n" \
+    #            f"{self.image}"
 
 
 """Создание таблицы услуг"""
