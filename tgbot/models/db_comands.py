@@ -3,7 +3,6 @@ from typing import List
 from xella_bot.content_manage.models import Stocks, Services
 from asgiref.sync import sync_to_async
 
-
 '''Команды управления акциями'''
 
 

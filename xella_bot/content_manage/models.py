@@ -1,8 +1,5 @@
 from django.db import models
 
-from aiogram import Dispatcher
-from aiogram.types import Message, CallbackQuery
-
 
 class TimeBasedModel(models.Model):
     class Meta:
@@ -26,9 +23,9 @@ class Stocks(TimeBasedModel):
     image = models.TextField(verbose_name='ID или ссылка на изображение')
 
     def __str__(self):
-        return f"{self.image}\n"\
-               f"{self.name}\n"\
-               f"{self.description}"
+        return f"{self.name}\n" \
+               f"{self.description}\n" \
+               f"{self.image}"
 
 
 """Создание таблицы услуг"""
@@ -47,5 +44,3 @@ class Services(TimeBasedModel):
     def __str__(self):
         return f"{self.name}\n" \
                f"{self.description}"
-
-
