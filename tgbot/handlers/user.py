@@ -17,6 +17,7 @@ from tgbot.keyboards.reply import menu_ru
 from aiogram.dispatcher.filters import Command, Text
 from datetime import datetime
 
+from tgbot.models.db_comands import select_all_stocks, get_name_stocks
 
 newdate = datetime.now()
 now_date = newdate.strftime("%d.%m.%Y")
@@ -35,19 +36,16 @@ async def user_start(message: Message):
                         современном оборудовании которое мы используем.\n\n"
         f"🟢А в дальнейшем я смогу ответить на самые часто задаваемые\
                          вопросы или связать вас с администратором клиники.\n"
-        f"О чем рассказать...",
+        f"О чем рассказать...?",
         reply_markup=menu_ru,
     )
 
 
 @rate_limit(5)
 async def open_command(message: Message):
-    db = message.bot["db"]
-    stcs = await db.select_all_stocks()
-    stock_data = list(stcs)
-    print(stock_data)
-    stock_name = stock_data[0].get("stock_name")
-    await message.answer(f"Stock {stock_name}")
+    all_stocks = await get_name_stocks()
+
+    await message.answer(f"{all_stocks.get()}")
     # await message.delete()
 
 
