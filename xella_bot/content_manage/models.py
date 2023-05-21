@@ -15,12 +15,12 @@ class TimeBasedModel(models.Model):
 class Stocks(TimeBasedModel):
     class Meta:
         verbose_name = "Акция"
-        verbose_name_plural = 'Акции'
+        verbose_name_plural = "Акции"
 
     id = models.AutoField(primary_key=True)
     name = models.TextField(verbose_name="Название акции")
-    description = models.TextField(verbose_name='Описание акции')
-    image = models.TextField(verbose_name='ID или ссылка на изображение')
+    description = models.TextField(verbose_name="Описание акции")
+    image = models.TextField(verbose_name="ID или ссылка на изображение")
 
     # def __str__(self):
     #     return f"{self.name}\n" \
@@ -34,13 +34,13 @@ class Stocks(TimeBasedModel):
 class Services(TimeBasedModel):
     class Meta:
         verbose_name = "Услуга"
-        verbose_name_plural = 'Услуги'
+        verbose_name_plural = "Услуги"
 
     id = models.AutoField(primary_key=True)
     name = models.TextField(verbose_name="Название Услуги")
-    description = models.TextField(verbose_name='Описание услуги')
-    image = models.TextField(verbose_name='ID или ссылка на изображение')
+    description = models.TextField(verbose_name="Описание услуги")
+    image = models.TextField(verbose_name="ID или ссылка на изображение")
 
-    def __str__(self):
-        return f"{self.name}\n" \
-               f"{self.description}"
+    # def __str__(self):
+    #     return f"{self.name}\n" \
+    #            f"{self.description}"

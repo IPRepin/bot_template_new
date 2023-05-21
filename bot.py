@@ -3,13 +3,9 @@ import logging
 import os
 import django
 
-os.environ.setdefault(
-    "DJANGO_SETTINGS_MODULE",
-    "xella_bot.xella_bot.settings"
-)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "xella_bot.xella_bot.settings")
 os.environ.update({"DJANGO_ALLOW_ASYNC_UNSAFE": "true"})
 django.setup()
-
 
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -25,16 +21,6 @@ from tgbot.handlers.user import register_user
 from tgbot.middlewares.environment import EnvironmentMiddleware
 from tgbot.middlewares.throttling import ThrottlingMiddleware
 from tgbot.models.postgre import DataBase
-
-
-# def setup_django():
-#     os.environ.setdefault(
-#         "DJANGO_SETTINGS_MODULE",
-#         "xella_bot.xella_bot.settings"
-#     )
-#     os.environ.update({"DJANGO_ALLOW_ASYNC_UNSAFE": "true"})
-#     django.setup()
-#
 
 logger = logging.getLogger(__name__)
 
@@ -76,10 +62,6 @@ async def main():
 
     # start
     try:
-        # logger.info("Подключение к базе данных")
-        # await db.create()
-        # logger.info("Создаем таблицу акций")
-        # await db.create_table_stocks()
         await dp.start_polling()
 
     finally:
@@ -90,8 +72,6 @@ async def main():
 
 if __name__ == "__main__":
     try:
-        # setup_django()
-        logger.info('настройки джанго запущены')
         asyncio.run(main())
     except (KeyboardInterrupt, SystemExit):
         logger.error("Bot stopped!")

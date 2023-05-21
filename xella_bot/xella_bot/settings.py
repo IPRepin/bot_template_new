@@ -81,10 +81,10 @@ WSGI_APPLICATION = "xella_bot.xella_bot.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": str(os.getenv('DB_NAME')),
-        "USER": str(os.getenv('DB_USER')),
-        "PASSWORD": str(os.getenv('DB_PASS')),
-        "HOST": str(os.getenv('DB_HOST')),
+        "NAME": str(os.getenv("DB_NAME")),
+        "USER": str(os.getenv("DB_USER")),
+        "PASSWORD": str(os.getenv("DB_PASS")),
+        "HOST": str(os.getenv("DB_HOST")),
     }
 }
 

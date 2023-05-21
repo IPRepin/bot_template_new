@@ -2,93 +2,68 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from tgbot.keyboards.callback_data_factory import services_callback
 from aiogram.types.web_app_info import WebAppInfo
 
-"""Клавиатура список акций"""
+"""Клавиатура список популярных услуг"""
 services_markup = InlineKeyboardMarkup(
     row_width=1,
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="✅Удаление тату!",
+                text="🚫Удаление тату!",
                 callback_data=services_callback.new(
-                    service_name="online",
+                    service_name="delete_tatu",
                 ),
             )
         ],
         [
             InlineKeyboardButton(
-                text="❤️‍🔥Скидка 10% на первый сеанс удаления тату!",
-                callback_data=stocks_callback.new(
-                    stock_name="tatu", stock_date="до 01.07.2023"
+                text="☄️Лазерное омоложение и шлифовка на PicoSure",
+                callback_data=services_callback.new(
+                    service_name="pico",
                 ),
             )
         ],
         [
             InlineKeyboardButton(
-                text="💬Скидка 10% за отзыв на Яндекс.Картах!",
-                callback_data=stocks_callback.new(
-                    stock_name="feedback", stock_date="бессрочно"
+                text="💎SMAS-лифтинг на аппарате Ulthera System",
+                callback_data=services_callback.new(
+                    service_name="ulthera",
                 ),
             )
         ],
         [
             InlineKeyboardButton(
-                text="🛍️Скидка 9% на покупки в XELLA shop!",
-                callback_data=stocks_callback.new(
-                    stock_name="shop", stock_date="до 10.06.2023"
+                text="🎇Фотоомоложение на аппарате BBL",
+                callback_data=services_callback.new(
+                    service_name="bbl",
                 ),
             )
         ],
         [
             InlineKeyboardButton(
-                text="☄️️Кешбэк 15% на лазерную эпиляцию",
-                callback_data=stocks_callback.new(
-                    stock_name="epil", stock_date="до 01.07.2023"
+                text="🍀Лазерная эпиляция на аппарате Elite+",
+                callback_data=services_callback.new(
+                    service_name="elit_plus",
                 ),
             )
         ],
         [
             InlineKeyboardButton(
-                text="✨️Скидка 15% на перманентный макияж",
-                callback_data=stocks_callback.new(
-                    stock_name="pm", stock_date="до 01.07.2023"
+                text="❄️Криолиполиз COCCON",
+                callback_data=services_callback.new(
+                    service_name="coccon",
                 ),
             )
         ],
     ],
 )
 
-'''Клавиатура акции "онлайн записи"'''
-stock_online_keyboard = InlineKeyboardMarkup(
+'''Клавиатура Удаление тату!"'''
+service_tatu_keyboard = InlineKeyboardMarkup(
     row_width=2,
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="ℹ️Подробнее", web_app=WebAppInfo(url="https://xella.clinic/akcii")
-            ),
-            InlineKeyboardButton(
-                text="✅Записаться",
-                web_app=WebAppInfo(
-                    url="https://b157912.yclients.com/company/163813/menu?o="
-                ),
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text="📲Скачать приложение",
-                web_app=WebAppInfo(url="https://xella.shop/"),
-            )
-        ],
-        [InlineKeyboardButton(text="↩️К списку акций", callback_data="chanel")],
-    ],
-)
-
-'''Клавиатура акции "скидка 10% на тату"'''
-stock_tatu_keyboard = InlineKeyboardMarkup(
-    row_width=2,
-    inline_keyboard=[
-        [
-            InlineKeyboardButton(
-                text="ℹ️Подробнее об услуге",
+                text="ℹ️Подробнее",
                 web_app=WebAppInfo(
                     url="https://xella.clinic/uslugi/tattoo/tattoo-removal"
                 ),
@@ -100,49 +75,85 @@ stock_tatu_keyboard = InlineKeyboardMarkup(
                 ),
             ),
         ],
-        [InlineKeyboardButton(text="↩️К списку акций", callback_data="chanel")],
+        # [
+        #     InlineKeyboardButton(
+        #         text="📲Скачать приложение",
+        #         web_app=WebAppInfo(url="https://xella.shop/"),
+        #     )
+        # ],
+        [InlineKeyboardButton(text="↩️К списку услуг", callback_data="chanel_service")],
     ],
 )
 
-'''Клавиатура акции "скидка за отзыв"'''
-stock_feedback_keyboard = InlineKeyboardMarkup(
+"""Клавиатура Лазерное омоложение и шлифовка на PicoSure"""
+service_pico_keyboard = InlineKeyboardMarkup(
     row_width=2,
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="ℹ️Подробнее об акции",
-                web_app=WebAppInfo(url="https://xella.clinic/review/yandexmaps"),
+                text="ℹ️Подробнее об услуге",
+                web_app=WebAppInfo(
+                    url="https://xella.clinic/uslugi/apparat/picosureomolozhenie"
+                ),
             ),
             InlineKeyboardButton(
-                text="💭Оставить отзыв",
+                text="✅Записаться",
                 web_app=WebAppInfo(
-                    url="https://yandex.ru/maps/org/klinika_esteticheskoy_meditsiny_xella/1134925283/reviews/?ll=37.627247%2C55.767271&z=17"
+                    url="https://b157912.yclients.com/company/163813/menu?o="
                 ),
             ),
         ],
-        [InlineKeyboardButton(text="↩️К списку акций", callback_data="chanel")],
+        [InlineKeyboardButton(text="↩️К списку услуг", callback_data="chanel_service")],
     ],
 )
 
-"""Клавиатура акции скидка на покупки"""
-
-shop_keyboard = InlineKeyboardMarkup(
+'''Клавиатура SMAS-лифтинг на аппарате Ulthera System"'''
+service_ultera_keyboard = InlineKeyboardMarkup(
     row_width=2,
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="📲Скачать приложение",
-                web_app=WebAppInfo(url="https://xella.shop/"),
-            )
+                text="ℹ️Подробнее об услуге",
+                web_app=WebAppInfo(url="https://xella.clinic/uslugi/apparat/ultherapy"),
+            ),
+            InlineKeyboardButton(
+                text="✅Записаться",
+                web_app=WebAppInfo(
+                    url="https://b157912.yclients.com/company/163813/menu?o="
+                ),
+            ),
         ],
-        [InlineKeyboardButton(text="↩️К списку акций", callback_data="chanel")],
+        [InlineKeyboardButton(text="↩️К списку услуг", callback_data="chanel_service")],
+    ],
+)
+
+"""Клавиатура Фотоомоложение на аппарате BBL"""
+
+service_bbl_keyboard = InlineKeyboardMarkup(
+    row_width=2,
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(
+                text="ℹ️Подробнее об услуге",
+                web_app=WebAppInfo(
+                    url="https://xella.clinic/uslugi/apparat/bblomolozhenie"
+                ),
+            ),
+            InlineKeyboardButton(
+                text="✅Записаться",
+                web_app=WebAppInfo(
+                    url="https://b157912.yclients.com/company/163813/menu?o="
+                ),
+            ),
+        ],
+        [InlineKeyboardButton(text="↩️К списку услуг", callback_data="chanel_service")],
     ],
 )
 
 
-"""Клавиатура акции Кешбэк 15% на лазерную эпиляцию"""
+"""Клавиатура Лазерная эпиляция на аппарате Elite+"""
 
-epil_keyboard = InlineKeyboardMarkup(
+service_epil_keyboard = InlineKeyboardMarkup(
     row_width=2,
     inline_keyboard=[
         [
@@ -157,20 +168,22 @@ epil_keyboard = InlineKeyboardMarkup(
                 ),
             ),
         ],
-        [InlineKeyboardButton(text="↩️К списку акций", callback_data="chanel")],
+        [InlineKeyboardButton(text="↩️К списку услуг", callback_data="chanel_service")],
     ],
 )
 
 
-"""Клавиатура акции Скидка 15% на перманентный макияж"""
+"""Клавиатура Криолиполиз COCCON"""
 
-pm_keyboard = InlineKeyboardMarkup(
+service_coccon_keyboard = InlineKeyboardMarkup(
     row_width=2,
     inline_keyboard=[
         [
             InlineKeyboardButton(
                 text="ℹ️Подробнее об услуге",
-                web_app=WebAppInfo(url="https://xella.clinic/uslugi/facecare"),
+                web_app=WebAppInfo(
+                    url="https://xella.clinic/uslugi/body/cryolipolysis"
+                ),
             ),
             InlineKeyboardButton(
                 text="✅Записаться",
@@ -179,6 +192,6 @@ pm_keyboard = InlineKeyboardMarkup(
                 ),
             ),
         ],
-        [InlineKeyboardButton(text="↩️К списку акций", callback_data="chanel")],
+        [InlineKeyboardButton(text="↩️К списку услуг", callback_data="chanel_service")],
     ],
 )

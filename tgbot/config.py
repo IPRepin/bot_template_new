@@ -56,9 +56,9 @@ def load_config(path: str = None):
     )
 
 
-PGUSER = str(os.getenv('DB_USER'))
-PGPASSWORD = str(os.getenv('DB_PASS'))
-DATABASE = str(os.getenv('DB_NAME'))
-DBHOST = str(os.getenv('DB_HOST'))
+PGUSER = str(os.getenv("DB_USER"))
+PGPASSWORD = str(os.getenv("DB_PASS"))
+DATABASE = str(os.getenv("DB_NAME"))
+DBHOST = str(os.getenv("DB_HOST"))
 
 POSTGRES_URI = f"://{PGUSER}:{PGPASSWORD}@{DBHOST}/{DATABASE}"

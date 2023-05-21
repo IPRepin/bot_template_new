@@ -3,7 +3,7 @@ from typing import List
 from xella_bot.content_manage.models import Stocks, Services
 from asgiref.sync import sync_to_async
 
-'''Команды управления акциями'''
+"""Команды управления акциями"""
 
 
 @sync_to_async()
@@ -20,10 +20,10 @@ def select_stock(id: int):
 
 @sync_to_async()
 def get_name_stocks() -> List[Stocks]:
-    return Stocks.objects.distinct('name')
+    return Stocks.objects.distinct("name")
 
 
-'''Команды управления услугами'''
+"""Команды управления услугами"""
 
 
 @sync_to_async()
@@ -40,4 +40,4 @@ def select_service(id: int):
 
 @sync_to_async()
 def get_name_services() -> List[Services]:
-    return Services.objects.distinct('name')
+    return Services.objects.distinct("name")
