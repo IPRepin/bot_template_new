@@ -8,7 +8,7 @@ stocks_markup = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="✅Скидка 5% на онлайн запись!",
+                text="✅✅Скидка 5% на онлайн запись!",
                 callback_data=stocks_callback.new(
                     stock_name="online", stock_date="бессрочно"
                 ),
