@@ -18,7 +18,7 @@ stocks_markup = InlineKeyboardMarkup(
             InlineKeyboardButton(
                 text="❤️‍🔥Скидка 10% на первый сеанс удаления тату!",
                 callback_data=stocks_callback.new(
-                    stock_name="tatu", stock_date="до 01.07.2023"
+                    stock_name="tatu", stock_date="до 01.08.2023"
                 ),
             )
         ],
