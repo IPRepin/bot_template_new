@@ -38,7 +38,7 @@ now_date = new_date.strftime("%d.%m.%Y")
 
 @rate_limit(5)
 async def user_start(message: Message):
-    await message.answer_photo(open('/home/darkus/GitHub/bot_template_new/image/bot.png', 'rb'),caption=f"Привет {message.from_user.first_name}, я тестовый бот клиники XELLA!\n\n"
+    await message.answer(f"Привет {message.from_user.first_name}, я тестовый бот клиники XELLA!\n\n"
         f"🟢Я расскажу тебе про акции которые проходят в нашей клинике.\n\n"
         f"🟢Помогу выбрать услугу и записаться на неё не выходя из телеграм.\n\n"
         f"🟢Расскажу где скачать и как пользоваться нашим мобильным приложением,\
